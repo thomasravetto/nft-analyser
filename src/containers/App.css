@@ -1,0 +1,243 @@
+/* Loader */
+.loader {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  transform-origin:50% 125%;
+  animation: mov-y 1s infinite linear;
+}
+.loader:before, .loader:after {
+  content:"";
+  flex:1;
+  background:#fff;
+  transform-origin: 0% 100%;
+  animation: rtr-x 1s infinite linear;
+}
+.loader:before {
+  transform-origin: 100% 100%;
+  animation-name: rtr-rx;
+}
+
+@keyframes mov-y {
+  0%,25%   {transform:translateY(0)     scaleY(1)}
+  49%   {transform:translateY(-75%)  scaleY(1)}
+  50%      {transform:translateY(-75%)  scaleY(-1)}
+  75%,100% {transform:translateY(-150%) scaleY(-1)}
+}
+@keyframes rtr-x {
+  25%,75% {transform: rotate(0deg)}
+  50%     {transform: rotate(90deg)}
+}
+@keyframes rtr-rx {
+  25%,75% {transform: rotate(0deg)}
+  50%     {transform: rotate(-90deg)}
+}
+
+
+
+/* Watchlist */
+
+.container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width:800px;
+}
+
+.collection_card {
+  background-color: #98a7b3;
+  border-radius: 7px;
+  height: 250px;
+  width: 500px;
+  position: relative;
+  padding: 20px;
+  padding-top: 60px;
+  margin: 20px 0px;
+  box-shadow: 0px 0px 20px #27374D;
+  transition: 300ms;
+}
+
+.collection_card {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.collection_card:hover, .collection_card:nth-child(odd):hover {
+  transition: 500ms;
+  transform: translate(0, -5px);
+}
+
+.collection_card:nth-child(odd){
+  position: relative;
+  left: 300px;
+}
+
+.collection_card_image {
+  border-radius: 50%;
+  height: 80px;
+}
+
+.image_and_name_card, .floor_price_and_owners_card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.watchlist_title {
+  text-align: center;
+}
+
+
+
+/* Navigation Bar */
+
+.navigation_bar {
+  display: grid;
+  grid-template-columns: repeat(6, 16.66%);
+  align-items: center;
+}
+
+.title_navigation {
+  order: 0;
+  color: black;
+  text-decoration: none;
+}
+
+.profile_pic {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  grid-column: 6/7;
+  position: relative;
+  left: 100px;;
+}
+
+.search_item_navigation {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  width: 100%;
+  padding: 10px;
+  font-size: 10px;
+  border: 1px solid rgb(198, 198, 198);
+  text-decoration: none;
+  color: black;
+}
+
+.search_item_navigation:hover {
+  transition: 200ms;
+  background-color: #d3d3d3;
+}
+
+.search_item_image_navigation {
+  border-radius: 50%;
+}
+
+.input_element_navigation {
+  border-radius: 7px;
+  border: 1px solid #c8c8c8;
+  height: 30px;
+  width: 400px;
+}
+
+.collections_options_navigation {
+  position: absolute;
+  top: 70px;
+  left: 17.3%;
+  grid-column: 2/3;
+  width: 400px;
+  height: auto;
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.error_page{
+  background-color: #b7b7b7;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+/* CollectionOverview */
+.collection_item_image {
+  width: auto;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.collection_item_title {
+  font-size: 20px;
+  position: relative;
+  left: 20px;
+  bottom: 10px;
+}
+
+.collection_overview_container {
+  display: grid;
+  grid-template-columns: repeat(5, 20%);
+  grid-template-rows: repeat(5,28%);
+  place-items: center;
+  height: auto;
+}
+
+.collection_item_container {
+  background-color: #98a7b3;
+  box-shadow: 0px 0px 20px #27374D;
+  border-radius: 20px;
+  width: 250px;
+  height: 320px;
+  overflow: hidden;
+  cursor: pointer;
+  color: #FAF1E4;
+}
+
+.collection_item_href {
+  text-decoration: none;
+}
+
+.collection_item_image_container {
+  height: 250px;
+  overflow: hidden;
+}
+
+.collection_item_container:hover img{
+  transform: scale(1.1);
+}
+
+.collection_info_container {
+  height: 550px;
+}
+
+.collection_info_image {
+  height: 200px;
+  width: auto;
+  margin: 30px;
+  margin-bottom: 0px;
+  border-radius: 30px;
+  border: 8px solid white;
+}
+
+.collection_info_name {
+  padding-left: 40px;
+}
+
+.collection_info_links {
+  position: absolute;
+  top: 40%;
+  right: 5%;
+}
+
+.collection_info_ {
+  padding: 10px;
+}
+
+/* Item Overview */
+.item_info_image {
+  width: 400px;
+}
