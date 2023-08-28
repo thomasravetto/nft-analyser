@@ -7,7 +7,7 @@ import Loader from "../../components/Helpers/Loader";
 const initialState = {
     watchlist: [],
     isLoggedIn: false,
-}
+};
 
 class HomePage extends Component{
     constructor(props) {

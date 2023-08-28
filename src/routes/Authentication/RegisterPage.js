@@ -2,7 +2,6 @@ import React, {Component} from "react";
 
 const initialState = {
     registerUsername:'',
-    registerEmail:'',
     registerPassword:'',
     registerConfirmation:'',
 }
@@ -17,9 +16,6 @@ class RegisterPage extends Component {
         this.setState({registerUsername: event.target.value})
     }
 
-    onEmailChange = (event) => {
-        this.setState({registerEmail: event.target.value})
-    }
     onPasswordChange = (event) => {
         this.setState({registerPassword: event.target.value})
     }
@@ -56,10 +52,6 @@ class RegisterPage extends Component {
                         <div >
                             <label className="db fw6 lh-copy f6" htmlFor="name">Username</label>
                             <input onChange={this.onUsernameChange} type="text" name="name"  id="name"/>
-                        </div>
-                        <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                            <input onChange={this.onEmailChange}  type="email" name="email-address"  id="email-address"/>
                         </div>
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
