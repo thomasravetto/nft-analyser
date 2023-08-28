@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Navigation from "../../components/Navigation/Navigation";
 import CollectionOverview from "../../components/Collection/CollectionOverview";
+import PageSkeleton from "../../components/Collection/skeleton/PageSkeleton";
 import { getCurrentEndpoint } from "../../helpers";
 
 const initialState = {
@@ -43,7 +44,10 @@ class CollectionPage extends Component {
         return (
             <div>
                 <Navigation/>
-                <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist}/>
+                {this.state.collection_info.length && this.state.collection_items.length
+                ? <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist}/>
+                : <PageSkeleton/>
+                }
             </div>
         )
     }
