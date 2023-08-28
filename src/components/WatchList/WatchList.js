@@ -2,9 +2,8 @@ import React from "react";
 import WatchItem from "./WatchItem";
 
 const WatchList = ({ watchlist }) => {
-    console.log("dio", watchlist)
     return (
-        <div>
+        <div  className="watchlist_container">
             {
                 watchlist.map((item, i) => {
                     return (

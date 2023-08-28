@@ -1,41 +1,113 @@
 /* Loader */
 .loader {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  transform-origin:50% 125%;
-  animation: mov-y 1s infinite linear;
-}
-.loader:before, .loader:after {
-  content:"";
-  flex:1;
-  background:#fff;
-  transform-origin: 0% 100%;
-  animation: rtr-x 1s infinite linear;
-}
-.loader:before {
-  transform-origin: 100% 100%;
-  animation-name: rtr-rx;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 30px, 0 -30px;
+  border-radius: 4px;
+  background: currentColor;
+  display: block;
+  margin: -50px auto 0;
+  position: relative;
+  margin-top: 100px;
+  top: 20%;
+  right: 3%;
+  color: #4E31AA;
+  transform: translateY(30px);
+  box-sizing: border-box;
+  animation: animloader 2s ease infinite;
 }
 
-@keyframes mov-y {
-  0%,25%   {transform:translateY(0)     scaleY(1)}
-  49%   {transform:translateY(-75%)  scaleY(1)}
-  50%      {transform:translateY(-75%)  scaleY(-1)}
-  75%,100% {transform:translateY(-150%) scaleY(-1)}
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 30px, 0 -30px;
+  border-radius: 4px;
+  background: currentColor;
+  color: #4E31AA;
+  position: absolute;
+  left: 30px;
+  top: 0;
+  animation: animloader1 2s 0.5s ease infinite;
 }
-@keyframes rtr-x {
-  25%,75% {transform: rotate(0deg)}
-  50%     {transform: rotate(90deg)}
+
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 30px, 0 -30px;
+  border-radius: 4px;
+  background: currentColor;
+  color: #4E31AA;
+  position: absolute;
+  left: 30px;
+  top: 0;
+  animation: animloader2 2s 0.5s ease infinite;
 }
-@keyframes rtr-rx {
-  25%,75% {transform: rotate(0deg)}
-  50%     {transform: rotate(-90deg)}
+
+.loader::before {
+  animation-delay: 0.4s;
+  left: 60px;
+}
+
+@keyframes animloader {
+  0% {
+    top: 0;
+    color: #4E31AA;
+  }
+  50% {
+    top: 20px;
+    color: #261954;
+  }
+  100% {
+    top: 0;
+    color: #4E31AA;
+  }
+}
+
+@keyframes animloader1 {
+  0% {
+    top: 0;
+    color: #4E31AA;
+  }
+  50% {
+    top: 20px;
+    color: #261954;
+  }
+  100% {
+    top: 0;
+    color: #4E31AA;
+  }
+}
+
+@keyframes animloader2 {
+  0% {
+    top: 0;
+    color: #4E31AA;
+  }
+  50% {
+    top: 40px;
+    color: #261954;
+  }
+  100% {
+    top: 0;
+    color: #4E31AA;
+  }
 }
 
 
 
 /* Watchlist */
+
+.watchlist_title {
+  font-family: 'Bebas Neue', sans-serif;
+  color: #4E31AA;
+  font-size: 5em;
+  text-align: center;
+  border-bottom: 2px solid #4E31AA;
+}
 
 .container {
   position: absolute;
@@ -44,51 +116,89 @@
   width:800px;
 }
 
-.collection_card {
-  background-color: #98a7b3;
-  border-radius: 7px;
-  height: 250px;
-  width: 500px;
-  position: relative;
+.watchlist_container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 1950px;
+  display: grid;
+  place-items: center;
+  padding-bottom: 100px;
+}
+
+@media screen and (min-width: 0px) and (max-width: 1269px) {
+  .watchlist_container {
+    width: 650px;
+  }
+}
+
+@media screen and (min-width: 1270px) and (max-width: 1999px) {
+  .watchlist_container {
+    width: 1300px;
+    grid-template-columns: repeat(2, 50%);
+  }
+}
+
+@media screen and (min-width: 1999px) and (max-width: 2699px) {
+  .watchlist_container {
+    grid-template-columns: repeat(3, 33%);
+  }
+}
+
+.watchlist_collection_card {
+  background-color: #ebebeb;
+  border-radius: 20px;
+  height: 300px;
+  width: 600px;
   padding: 20px;
-  padding-top: 60px;
-  margin: 20px 0px;
-  box-shadow: 0px 0px 20px #27374D;
+  padding-right: 40px;
+  margin: 10px;
+  box-shadow: 0px 0px 30px #c4b49a;
   transition: 300ms;
-}
-
-.collection_card {
-  display: block;
-  text-decoration: none;
-  color: black;
-}
-
-.collection_card:hover, .collection_card:nth-child(odd):hover {
-  transition: 500ms;
-  transform: translate(0, -5px);
-}
-
-.collection_card:nth-child(odd){
-  position: relative;
-  left: 300px;
-}
-
-.collection_card_image {
-  border-radius: 50%;
-  height: 80px;
-}
-
-.image_and_name_card, .floor_price_and_owners_card {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.watchlist_title {
+.watchlist_collection_card {
+  text-decoration: none;
+  color: #4E31AA;
+}
+
+.watchlist_item_floor_price, .watchlist_item_owners {
+  display: inline-block;
+  vertical-align: top;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.watchlist_item_floor_price h3, .watchlist_item_owners h3 {
+  margin-bottom: 0px;
+}
+
+.watchlist_item_floor_price p, .watchlist_item_owners p {
+  margin-top: 0px;
+}
+
+.watchlist_item_info_container {
+  width: 130%;
   text-align: center;
 }
 
+.watchlist_item_title {
+  text-align: center;
+}
 
+.watchlist_collection_card:hover {
+  transition: 500ms;
+  transform: translate(0, -5px);
+}
+.watchlist_item_image {
+  border-radius: 100%;
+  border: 5px solid white;
+  height: 200px;
+  box-shadow: 0px 0px 20px rgb(206, 206, 206);
+}
 
 /* Navigation Bar */
 
@@ -128,7 +238,7 @@
 
 .search_item_navigation:hover {
   transition: 200ms;
-  background-color: #d3d3d3;
+  background-color: #ebebeb;
 }
 
 .search_item_image_navigation {
@@ -240,4 +350,8 @@
 /* Item Overview */
 .item_info_image {
   width: 400px;
+}
+
+.must_login_container {
+  text-align: center;
 }

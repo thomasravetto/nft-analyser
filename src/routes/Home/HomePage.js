@@ -35,14 +35,14 @@ class HomePage extends Component{
             <div>
             <Navigation/>
                 <div className="container">
-                <div className='watchlist_title'>
-                    <h1>WatchList</h1>
+                <div>
+                    <h1 className="watchlist_title">WatchList</h1>
                 </div>
                 <div>
                     {this.state.isLoggedIn
                     ? this.state.watchlist.length
                         ?  this.state.watchlist !== "watchlist_empty"
-                            ? <WatchList className="watchlist_container" watchlist={this.state.watchlist}/>
+                            ? <WatchList watchlist={this.state.watchlist}/>
                             : <div>Your watchlist is empty</div>
                         : <Loader/>
                     : <MustLogIn/>}
