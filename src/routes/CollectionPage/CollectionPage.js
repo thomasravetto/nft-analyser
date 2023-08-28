@@ -44,7 +44,7 @@ class CollectionPage extends Component {
         return (
             <div>
                 <Navigation/>
-                {this.state.collection_info.length && this.state.collection_items.length
+                {this.state.collection_info && this.state.collection_items.length
                 ? <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist}/>
                 : <PageSkeleton/>
                 }
