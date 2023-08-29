@@ -14,9 +14,8 @@ const initialState = {
   user: {
     id:'',
     username:'',
-    email:'',
-    watchlist:'',
-    joined:''
+    joined:'',
+    watchlist: []
   }
 }
 
@@ -45,10 +44,10 @@ class App extends Component {
       user: {
         id: user.id,
         username: user.username,
-        email: user.email,
         joined: user.joined,
-      }
-    };
+        watchlist:[]
+        }
+      };
 
     sessionStorage.setItem('user', JSON.stringify(newUser));
 
@@ -87,10 +86,10 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<HomePage isLoggedIn={this.state.isLoggedIn} username={this.state.user.username}/>}/>
+          <Route path='/' element={<HomePage watchlist={this.state.user.watchlist} updateWatchlistInParent={this.updateWatchlistInParent} isLoggedIn={this.state.isLoggedIn} username={this.state.user.username}/>}/>
           <Route path='/register'element={<RegisterPage loadUser={this.loadUser}/>}/>
           <Route path='/login' element={<SigninPage loadUser={this.loadUser}/>}/>
-          <Route path='/collection/:collection_slug'element={<CollectionPage addCollectionToWatchlist={this.addCollectionToWatchlist}/>}/>
+          <Route path='/collection/:collection_slug'element={<CollectionPage addCollectionToWatchlist={this.addCollectionToWatchlist} username={this.state.user.username}/>}/>
           <Route path='/:collection_address/:item_id'element={<ItemPage/>}/>
           <Route path='*' element={<ErrorPage />} />
         </Routes>

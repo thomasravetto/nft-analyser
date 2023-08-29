@@ -26,9 +26,12 @@ class HomePage extends Component{
                 })
             })
             .then(resp => resp.json())
-            .then(data => this.setState({watchlist:data}))
+            .then(data => {
+                this.setState({watchlist:data})
+            });
         }
     }
+
 
     render() {
         return (

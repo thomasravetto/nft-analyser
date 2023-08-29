@@ -4,11 +4,11 @@ import CollectionOverview from "../../components/Collection/CollectionOverview";
 import PageSkeleton from "../../components/Collection/skeleton/PageSkeleton";
 import { getCurrentEndpoint } from "../../helpers";
 
-const initialState = {
+let initialState = {
     collection_info: {},
     collection_items: [],
     collection_slug: '',
-    start_token:0
+    start_token:0,
 }
 
 const updateStartToken = (start_token) => {
@@ -40,12 +40,25 @@ class CollectionPage extends Component {
         });
     }
 
+    isCollectionInWatchlist = async (collection) => {
+            const resp = await fetch("http://localhost:3500/is-collection-in-watchlist", {
+                method:'post',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify({
+                    username: this.props.username,
+                    collection_address: collection
+                })
+            })
+            const data = await resp.json()
+            return data;
+        }
+
     render() {
         return (
             <div>
                 <Navigation/>
                 {this.state.collection_info && this.state.collection_items.length
-                ? <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist}/>
+                ? <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist} isCollectionInWatchlist={this.isCollectionInWatchlist}/>
                 : <PageSkeleton/>
                 }
             </div>
