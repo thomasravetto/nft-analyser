@@ -3,10 +3,11 @@ import internet_logo from "../../static/internet.png"
 import eth_logo from "../../static/ethereum.png"
 import CollectionItem from "./CollectionItem";
 
-const CollectionOverview = ({collection_info, collection_items, watchlist, addCollectionToWatchlist, isCollectionInWatchlist}) => {
+const CollectionOverview = ({collection_info, collection_items, addCollectionToWatchlist, fetchCollection, removeCollectionFromWatchlist, isCollectionInWatchlist, start_token}) => {
     const {image_url,
     collection_name,
     collection_address,
+    collection_slug,
     description,
     external_url,
     floor_price,
@@ -26,8 +27,6 @@ const CollectionOverview = ({collection_info, collection_items, watchlist, addCo
             console.error("Error checking collection in watchlist:", error);
           });
       }, [collection_address, isCollectionInWatchlist]);
-
-      console.log(collectionInWatchlist)
 
     // Create JSX elements from the parts
     const transformedText = parts.map((part, index) => {
@@ -69,8 +68,8 @@ const CollectionOverview = ({collection_info, collection_items, watchlist, addCo
                         <div className=" metadata"><h4 className="collection_info_owners metadata_content">{owners === 0 ? "--" : owners}</h4><p className="metadata_content">Owners</p></div>
                         <div className=" metadata"><h3 className="collection_info_supply metadata_content">{total_supply}</h3><p className="metadata_content">Items</p></div>
                         {collectionInWatchlist
-                        ? <button className="remove_from_watchlist">Remove from WatchList</button>
-                        : <button className="add_to_watchlist" onClick={() => {addCollectionToWatchlist(collection_address); setCollectionInWatchlist(true);}}>Add To WatchList</button>
+                        ? <button className="remove_from_watchlist" onClick={() => {removeCollectionFromWatchlist(collection_address); setCollectionInWatchlist(false)}}>Remove from WatchList</button>
+                        : <button className="add_to_watchlist" onClick={() => {addCollectionToWatchlist(collection_address); setCollectionInWatchlist(true)}}>Add To WatchList</button>
                         }
                     </div>
                 </div>
@@ -89,6 +88,7 @@ const CollectionOverview = ({collection_info, collection_items, watchlist, addCo
                     })
                 }
             </div>
+            <button onClick={() => {fetchCollection(collection_slug, start_token)}}>Load More</button>
         </div>
     )
 }

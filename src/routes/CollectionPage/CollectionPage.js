@@ -23,15 +23,24 @@ class CollectionPage extends Component {
         this.state = initialState;
     }
 
-    fetchCollection(slug, start_token) {
-        fetch("http://localhost:3500/collection/" + slug + "/" + start_token)
-        .then(resp => resp.json())
-        .then(data => {
-            this.setState({collection_info: data.collection_info})
-            this.setState({collection_items: data.items_info})})
-        .catch(err => console.error("Error fetching collection data", err))
-        this.setState({start_token: updateStartToken(this.state.start_token)})
+    fetchCollection = async (slug, start_token) => {
+        try {
+            const resp = await fetch("http://localhost:3500/collection/" + slug + "/" + start_token)
+            const data = await resp.json()
+
+            if (JSON.stringify(this.state.collection_items) !== JSON.stringify(data.items_info)) {
+                this.setState(prevState => ({
+                collection_info: data.collection_info,
+                collection_items: prevState.collection_items.concat(data.items_info),
+                collection_slug:prevState.collection_slug,
+                start_token: updateStartToken(prevState.start_token)
+              }), () => {
+                console.log("Test stato", this.state)});
+            }
+        } catch (error) {
+            console.error("Error fetching collection data", error)
     }
+}
 
     componentDidMount() {
         const slug = getCurrentEndpoint(window.location.pathname)[1]
@@ -58,7 +67,7 @@ class CollectionPage extends Component {
             <div>
                 <Navigation/>
                 {this.state.collection_info && this.state.collection_items.length
-                ? <CollectionOverview collection_info={this.state.collection_info} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist} isCollectionInWatchlist={this.isCollectionInWatchlist}/>
+                ? <CollectionOverview collection_info={this.state.collection_info} fetchCollection={this.fetchCollection} collection_items={this.state.collection_items} addCollectionToWatchlist={this.props.addCollectionToWatchlist} removeCollectionFromWatchlist={this.props.removeCollectionFromWatchlist} isCollectionInWatchlist={this.isCollectionInWatchlist} start_token={this.state.start_token}/>
                 : <PageSkeleton/>
                 }
             </div>

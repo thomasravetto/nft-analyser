@@ -38,6 +38,18 @@ class App extends Component {
     })
   }
 
+  removeCollectionFromWatchlist = (collection) => {
+    const username = this.state.user.username;
+    fetch("http://localhost:3500/remove-from-watchlist", {
+      method:"delete",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({
+        collection:collection,
+        username:username
+      })
+    })
+  }
+
   loadUser = (user) => {
     const newUser = {
       isLoggedIn: true,
@@ -89,7 +101,7 @@ class App extends Component {
           <Route path='/' element={<HomePage watchlist={this.state.user.watchlist} updateWatchlistInParent={this.updateWatchlistInParent} isLoggedIn={this.state.isLoggedIn} username={this.state.user.username}/>}/>
           <Route path='/register'element={<RegisterPage loadUser={this.loadUser}/>}/>
           <Route path='/login' element={<SigninPage loadUser={this.loadUser}/>}/>
-          <Route path='/collection/:collection_slug'element={<CollectionPage addCollectionToWatchlist={this.addCollectionToWatchlist} username={this.state.user.username}/>}/>
+          <Route path='/collection/:collection_slug'element={<CollectionPage addCollectionToWatchlist={this.addCollectionToWatchlist} removeCollectionFromWatchlist={this.removeCollectionFromWatchlist} username={this.state.user.username}/>}/>
           <Route path='/:collection_address/:item_id'element={<ItemPage/>}/>
           <Route path='*' element={<ErrorPage />} />
         </Routes>

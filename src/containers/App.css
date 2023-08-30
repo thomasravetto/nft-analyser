@@ -493,7 +493,7 @@
   grid-template-columns: repeat(5, 20%);
   grid-template-rows: repeat(5, 28%);
   place-items: center;
-  height: auto;
+  max-height: auto;
 }
 
 .collection_item_container {
@@ -541,7 +541,6 @@
 
 .remove_from_watchlist:hover{
   background-color: #75737d;
-  
   transition: 100ms;
 }
 
@@ -624,7 +623,7 @@
   }
   .collection_overview_container {
     grid-template-columns: repeat(3, 30%);
-    grid-template-rows: repeat(5, 20%);
+    grid-template-rows: repeat(5, 15%);
   }
 }
 
@@ -638,5 +637,9 @@
 @media screen and (min-width: 1999px) and (max-width: 2699px) {
   .watchlist_container {
     grid-template-columns: repeat(3, 33%);
+  }
+  .collection_overview_container {
+    grid-template-columns: repeat(8, 12.5%);
+    grid-template-rows: repeat(3, 40%);
   }
 }
