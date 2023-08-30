@@ -3,11 +3,10 @@ import internet_logo from "../../static/internet.png"
 import eth_logo from "../../static/ethereum.png"
 import CollectionItem from "./CollectionItem";
 
-const CollectionOverview = ({collection_info, collection_items, addCollectionToWatchlist, fetchCollection, removeCollectionFromWatchlist, isCollectionInWatchlist, start_token}) => {
+const CollectionOverview = ({collection_info, collection_items, addCollectionToWatchlist, removeCollectionFromWatchlist, isCollectionInWatchlist}) => {
     const {image_url,
     collection_name,
     collection_address,
-    collection_slug,
     description,
     external_url,
     floor_price,
@@ -88,7 +87,7 @@ const CollectionOverview = ({collection_info, collection_items, addCollectionToW
                     })
                 }
             </div>
-            <button onClick={() => {fetchCollection(collection_slug, start_token)}}>Load More</button>
+            <button></button>
         </div>
     )
 }

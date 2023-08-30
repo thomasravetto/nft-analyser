@@ -1,7 +1,7 @@
 import React from "react";
 import ItemSkeleton from "./ItemSkeleton";
 
-const PageSkeleton = () => {
+const PageSkeleton = ({start_token}) => {
     return (
         <div>
             <div className="body_skeleton card_skeleton">
@@ -31,7 +31,7 @@ const PageSkeleton = () => {
                 </div>
             </div>
             <div className="item_skeleton_container">
-                {Array(20).fill({}).map((d, i) => (<ItemSkeleton key={i}/>))}
+                {Array(start_token + 20).fill({}).map((d, i) => (<ItemSkeleton key={i}/>))}
             </div>
         </div>
     )

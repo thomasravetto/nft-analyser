@@ -490,10 +490,8 @@
 
 .collection_overview_container {
   display: grid;
-  grid-template-columns: repeat(5, 20%);
-  grid-template-rows: repeat(5, 28%);
   place-items: center;
-  max-height: auto;
+  height: auto;
 }
 
 .collection_item_container {
@@ -505,6 +503,7 @@
   overflow: hidden;
   cursor: pointer;
   color: #4E31AA;
+  margin: 20px;
 }
 
 .description {
@@ -620,17 +619,28 @@
 @media screen and (min-width: 0px) and (max-width: 1269px) {
   .watchlist_container {
     width: 650px;
+    background-color: pink;
   }
   .collection_overview_container {
-    grid-template-columns: repeat(3, 30%);
-    grid-template-rows: repeat(5, 15%);
+    grid-template-columns: repeat(3, 33%);
+  }
+  .item_skeleton_container {
+    grid-template-columns: repeat(3, 33%);
   }
 }
 
-@media screen and (min-width: 1270px) and (max-width: 1999px) {
+@media screen and (min-width: 1270px) and (max-width: 1998px) {
   .watchlist_container {
     width: 1300px;
     grid-template-columns: repeat(2, 50%);
+  }
+
+  .collection_overview_container {
+    grid-template-columns: repeat(5, 19.9%);
+  }
+
+  .item_skeleton_container {
+    grid-template-columns: repeat(5, 20%);
   }
 }
 
@@ -640,6 +650,8 @@
   }
   .collection_overview_container {
     grid-template-columns: repeat(8, 12.5%);
-    grid-template-rows: repeat(3, 40%);
+  }
+  .item_skeleton_container {
+    grid-template-columns: repeat(8, 12.5%);
   }
 }
