@@ -1,13 +1,13 @@
 # nft-analyser
 
-#NFT Collection Browser Application (Frontend)
+# NFT Collection Browser Application (Frontend)
 Welcome to the NFT Collection Browser Application frontend repository! This repository contains the frontend code for our application, which allows users to browse NFT collections. The frontend is built using React and utilizes the React Router library for navigation.
 
 
-##Introduction
+## Introduction
 Our NFT Collection Browser Application frontend provides a user-friendly interface for exploring and interacting with NFT collections. Users can view collections, individual NFT items, register, and sign in to manage their watchlists.
 
-##Features
+## Features
 Collection Browsing: Users can browse through various NFT collections available on the platform.
 
 Item Details: Detailed information about individual NFT items, including images and descriptions.
